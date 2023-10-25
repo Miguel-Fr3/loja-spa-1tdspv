@@ -2,7 +2,31 @@
 @tailwind components;
 @tailwind utilities; 
 
+
 @layer components {
+
+
+    .card-user{
+        @apply flex
+        flex-wrap;
+
+        & li{
+            @apply bg-red-800
+            p-5
+            m-5
+            w-40;
+
+            & img{
+                @apply block m-auto;
+            }
+
+            & figcaption{
+                @apply text-center
+                font-bold
+                text-xl;
+            }
+        }
+    }
     .menu{
         
         & li{
@@ -25,4 +49,5 @@
         @apply font-extrabold text-2xl text-white bg-slate-800 p-4 text-center fixed bottom-0 w-full;
 
     }
+
 }

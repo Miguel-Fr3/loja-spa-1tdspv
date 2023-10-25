@@ -20,6 +20,9 @@ export default function cabecalho() {
         <li>
           <Link href="/produtos/fazenda/loja/laticinios">Queijos</Link>
         </li>
+        <li>
+          <Link href="/user-pages">GIT-USERS</Link>
+        </li>
       </ul>
       </nav>
     </header>
