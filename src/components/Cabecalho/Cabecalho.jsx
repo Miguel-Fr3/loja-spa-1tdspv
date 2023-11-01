@@ -9,6 +9,9 @@ export default function cabecalho() {
       <nav className="menu">
       <ul>
         <li>
+          <Link href="/login">LOGIN</Link>
+        </li>
+        <li>
           <Link href="/produtos/calca">CALÇA</Link>
         </li>
         <li>

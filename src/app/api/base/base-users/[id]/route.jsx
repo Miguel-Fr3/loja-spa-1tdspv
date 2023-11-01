@@ -2,6 +2,7 @@ import {promises as fs} from 'fs';
 import { NextResponse } from 'next/server';
 
 
+
 export async function GET(request, {params}) {
     
     const file  = await  fs.readFile(process.cwd() + '/src/app/api/base/data.json', 'utf8');
@@ -18,18 +19,15 @@ export async function GET(request, {params}) {
 }
 
 export async function POST(request, response){
-
     const file  = await  fs.readFile(process.cwd() + '/src/app/api/base/data.json', 'utf8');
-
-    const usuarios = await JSON.parse(file)
+    
+    const usuarios = await JSON.parse(file);
 
     const userRequest = await request.json();
 
     try{
         for (let x = 0; x < usuarios.usuarios.length; x++) {
             const userFile = usuarios.usuarios[x];
-
-            console.log(userFile.email);
 
             if(userFile.email == userRequest.email && userFile.senha == userRequest.senha){
                 return NextResponse.json({"status":true});
@@ -38,6 +36,5 @@ export async function POST(request, response){
     }catch(error){
         console.log(error);
     }
-
     return NextResponse.json({"status":false});
 }
