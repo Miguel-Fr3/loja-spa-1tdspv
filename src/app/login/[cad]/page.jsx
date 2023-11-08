@@ -1,8 +1,9 @@
 'use client'
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react"
-import Link from "next/link";
-export default function LoginUser() {
+
+export default function CadUser({params}) {
 
     //Utilizando o redirecionamento quando estamos no cliente:
     const router = useRouter();
@@ -12,8 +13,10 @@ export default function LoginUser() {
 
     //criando um useState para comportar o usuario
     const [usuario, setUsuario] = useState({
+        "nome":"",
         "email":"",
         "senha":""
+ 
     });
 
     useEffect(() => {
@@ -61,8 +64,9 @@ export default function LoginUser() {
                     setTimeout(()=>{
                         setMsgStatus("");
                         setUsuario({
-                            "email":"",
-                            "senha":""
+                            "nome":"",
+                            "senha":"",
+                            "email":""
                         });
                     },5000)
                 }
@@ -74,29 +78,34 @@ export default function LoginUser() {
 
   return (
     <div>
-        <h1>Informações dos usuarios</h1>
+        <h1>CADASTRO DE USUÁRIOS</h1>
 
             <h2 className={classLoginMsg}>{msgstatus}</h2>
 
         <div>
             <form onSubmit={handleSubmit}>
                 <fieldset>
-                    <legend>LOGIN</legend>
+                    <legend>Cadastro</legend>
+                    <div>
+                        <label htmlFor="idNome">NOME:</label>
+                        <input type="text" name="nome" id="idNome" placeholder="Digite o seu NOME:"
+                        value={usuario.nome} onChange={handleChange}/>
+                    </div>
                     <div>
                         <label htmlFor="idEmail">EMAIL:</label>
-                        <input type="email" name="email" id="idEmail" placeholder="Digite o seu email:"
+                        <input type="email" name="email" id="idEmail" placeholder="Digite o seu EMAIL:"
                         value={usuario.email} onChange={handleChange}/>
                     </div>
                     <div>
                         <label htmlFor="idSenha">SENHA:</label>
-                        <input type="password" name="senha" id="idSenha" placeholder="Digite a sua senha:"
+                        <input type="password" name="senha" id="idSenha" placeholder="Digite a sua SENHA:"
                         value={usuario.senha} onChange={handleChange}/>
                     </div>
                     <div>
-                        <button>Login</button>
+                        <button>CADASTRAR</button>
                     </div>
                     <div>
-                        <p>Novo aqui? <Link href="/login/cad">CLIQUE AQUI</Link></p>
+                        <p>Possui registro? <Link href="/login">CLIQUE AQUI</Link></p>
                     </div>
                 </fieldset>
             </form>
