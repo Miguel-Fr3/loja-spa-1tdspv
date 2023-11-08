@@ -12,6 +12,7 @@ export default function LoginUser() {
 
     //criando um useState para comportar o usuario
     const [usuario, setUsuario] = useState({
+        "info":"login",
         "email":"",
         "senha":""
     });
@@ -48,9 +49,9 @@ export default function LoginUser() {
                 body: JSON.stringify(usuario)
             });
             if(response.ok){
-                let status = await response.json();
+                const user = await response.json();
                 
-                if(status.status == true){
+                if(user){
                     setMsgStatus("Login realizado com SUCESSO!");
                     setTimeout(()=>{
                         setMsgStatus("");
@@ -61,6 +62,7 @@ export default function LoginUser() {
                     setTimeout(()=>{
                         setMsgStatus("");
                         setUsuario({
+                            "info":"login",
                             "email":"",
                             "senha":""
                         });

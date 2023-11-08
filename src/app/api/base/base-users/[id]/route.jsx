@@ -18,23 +18,32 @@ export async function GET(request, {params}) {
     }
 }
 
-export async function POST(request, response){
+//Criando a função do LOGIN
+const handleLogin = async (email, senha)=>{
     const file  = await  fs.readFile(process.cwd() + '/src/app/api/base/data.json', 'utf8');
-    
     const usuarios = await JSON.parse(file);
-
-    const userRequest = await request.json();
-
     try{
         for (let x = 0; x < usuarios.usuarios.length; x++) {
             const userFile = usuarios.usuarios[x];
 
             if(userFile.email == userRequest.email && userFile.senha == userRequest.senha){
-                return NextResponse.json({"status":true});
+                return userFile;
             }
         }
     }catch(error){
         console.log(error);
     }
+}
+
+
+
+
+export async function POST(request, response){
+    const dadosRequest = await request.json();
+
+    if(dadosRequest.info == "login"){
+        return NextResponse.json( await handleLogin(dadosRequest.email, dadosRequest.senha));
+    }
+    
     return NextResponse.json({"status":false});
 }

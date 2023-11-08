@@ -13,6 +13,7 @@ export default function CadUser({params}) {
 
     //criando um useState para comportar o usuario
     const [usuario, setUsuario] = useState({
+        "info":"cad",
         "nome":"",
         "email":"",
         "senha":""
@@ -64,6 +65,7 @@ export default function CadUser({params}) {
                     setTimeout(()=>{
                         setMsgStatus("");
                         setUsuario({
+                            "info":"cad",
                             "nome":"",
                             "senha":"",
                             "email":""
