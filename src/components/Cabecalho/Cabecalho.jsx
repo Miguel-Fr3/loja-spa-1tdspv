@@ -1,12 +1,20 @@
-import React from "react";
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 
 export default function cabecalho() {
 
-  
 
+
+  // const token = sessionStorage.getItem("token-users");
+ 
   return (
+
     <header className="bg-slate-800 text-white">
+
+
+
       <h1 className="text-center text-3x1 font-extrabold">PRODUTOS</h1>
       <hr className="border-red-700"/>
       <nav className="menu">
