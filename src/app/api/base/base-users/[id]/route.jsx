@@ -1,8 +1,6 @@
 import {promises as fs} from 'fs';
 import { NextResponse } from 'next/server';
 
-
-
 export async function GET(request, {params}) {
     
     const file  = await  fs.readFile(process.cwd() + '/src/app/api/base/data.json', 'utf8');
@@ -19,31 +17,32 @@ export async function GET(request, {params}) {
 }
 
 //Criando a função do LOGIN
-const handleLogin = async (email, senha)=>{
+const handleLogin = async (email,senha)=>{
     const file  = await  fs.readFile(process.cwd() + '/src/app/api/base/data.json', 'utf8');
     const usuarios = await JSON.parse(file);
+
     try{
         for (let x = 0; x < usuarios.usuarios.length; x++) {
             const userFile = usuarios.usuarios[x];
 
-            if(userFile.email == userRequest.email && userFile.senha == userRequest.senha){
+            if(userFile.email == email && userFile.senha == senha){
                 return userFile;
             }
         }
+        return null;
     }catch(error){
         console.log(error);
-    }
+ }
 }
 
-
-
-
 export async function POST(request, response){
-    const dadosRequest = await request.json();
+    //Pegando os dados do request com o await e destructuring.
+    const {info,email,senha} = await request.json();
 
-    if(dadosRequest.info == "login"){
-        return NextResponse.json( await handleLogin(dadosRequest.email, dadosRequest.senha));
+    console.log(info,email,senha);
+
+    if(info == "login"){
+        return  NextResponse.json( await handleLogin(email,senha));
     }
-    
     return NextResponse.json({"status":false});
 }
