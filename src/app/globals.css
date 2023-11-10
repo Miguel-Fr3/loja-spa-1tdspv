@@ -5,6 +5,15 @@
 
 @layer components {
 
+    .login-err{
+        @apply bg-red-500 text-red-900 border-red-900 text-center text-3xl p-5 
+    }
+    .login-suc{
+        @apply bg-green-500 text-green-900 border-green-900 text-center text-3xl p-5 
+    }
+    .login{
+        @apply hidden; 
+    }
 
     .card-user{
         @apply flex

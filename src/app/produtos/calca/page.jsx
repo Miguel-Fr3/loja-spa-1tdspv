@@ -1,6 +1,11 @@
+
 import Link from "next/link";
 import Image from "next/image";
+
 export default function Calca() {
+
+
+
   return (
     <div>
         <h1>CALÇA</h1>
